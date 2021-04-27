@@ -1,4 +1,10 @@
-import { createServer, Factory, Model, Response } from 'miragejs';
+import {
+  createServer,
+  Factory,
+  Model,
+  Response,
+  ActiveModelSerializer,
+} from 'miragejs';
 import faker from 'faker';
 
 interface User {
@@ -9,6 +15,10 @@ interface User {
 
 export function makeServer() {
   const server = createServer({
+    serializers: {
+      application: ActiveModelSerializer,
+    },
+
     // datas that i need from the mirage mock db
     models: {
       user: Model.extend<Partial<User>>({}),
